@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Livros{% endblock title %}
+
+{% block content %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+{% endblock css %}
+
+<a href="{% url 'home' %}" class="navbar-brand font-weight-bold">Voltar para a página Inicial</a>
+<div class="card">
+    <div class="card-body">
+        <h4>LIVROS</h4>
+        <hr>
+        <a <button class="btn btn-success" href="{% url 'livro_add' %}">Adicionar</button><a/>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Subtítulo</th>
+                    <th>Autor</th>
+                    <th>Editora</th>
+                    <th>Data de Lançamento</th>
+                    <th>Número de Páginas</th>
+                    <th>Isbn</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for livro in livros %}
+                <tr>
+                    <td>{{ livro.titulo }}</td>
+                    <td>{{ livro.subtitulo }}</td>
+                    <td>{{ livro.autor }}</td>
+                    <td>{{ livro.editora }}</td>
+                    <td>{{ livro.data_lancamento }}</td>
+                    <td>{{ livro.isbn }}</td>
+                    <td>{{ livro.numero_paginas }}</td>
+                    <td>
+                        <a <button class="btn btn-warning" href="{% url 'livro_edit' livro.id %}">Editar</button><a/>
+                        <a onclick="return confirm('Tem certeza que deseja excluir o Livro?')" <button class="btn btn-danger" href="{% url 'livro_delete' livro.id %}"">Excluir</button><a/>
+                     </td>
+                 </tr>
+                 {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock  %}

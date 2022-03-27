@@ -1,8 +1,10 @@
 from django.shortcuts import redirect, render
 from .forms import AutorForm
 from .forms import EditoraForm
+from .forms import LivroForm
 from .models import Autor
 from .models import Editora
+from .models import Livro
 
 
 def viewHome(request):
@@ -103,5 +105,48 @@ def viewEditoraDelete(request, editora_pk):
     return redirect('editora')
 
 
+def viewLivro(request):
+    livros = Livro.objects.all()
+
+    context = {
+        'livros': livros
+    }
+    return render(request, 'portal/livro.html', context)
 
 
+def viewLivroAdd(request):
+    form = LivroForm(request.POST or None)
+
+    if request.POST:
+        if form.is_valid():
+            form.save()
+            return redirect('livro')
+
+    context = {
+        'form': form
+    }
+    return render(request, 'portal/livro_add.html', context)
+
+
+def viewLivroEdit(request, livro_pk):
+    livro = Livro.objects.get(pk=livro_pk)
+
+    form = LivroForm(request.POST or None, instance=livro)
+
+    if request.POST:
+        if form.is_valid():
+            form.save()
+            return redirect('livro')
+
+    context = {
+        'form': form,
+        'livro': livro.id
+    }
+    return render(request, 'portal/livro_edit.html', context)
+    
+    
+def viewLivroDelete(request, livro_pk):
+    livro = Livro.objects.get(pk=livro_pk)
+    livro.delete()
+
+    return redirect('livro')
