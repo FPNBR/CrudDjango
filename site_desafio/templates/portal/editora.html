@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Editoras{% endblock title %}
+
+{% block content %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+{% endblock css %}
+
+<a href="{% url 'home' %}" class="navbar-brand font-weight-bold">Voltar para a página Inicial</a>
+<div class="card">
+    <div class="card-body">
+        <h4>EDITORAS</h4>
+        <hr>
+        <a <button class="btn btn-success" href="{% url 'editora_add' %}">Adicionar</button><a/>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Cidade</th>
+                    <th>Estado</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for editora in editoras %}
+                <tr>
+                    <td>{{ editora.nome }}</td>
+                    <td>{{ editora.cidade }}</td>
+                    <td>{{ editora.estado }}</td>
+                    <td>
+                        <a <button class="btn btn-warning" href="{% url 'editora_edit' editora.id %}">Editar</button><a/>
+                        <a onclick="return confirm('Tem certeza que deseja excluir o Editor(a)?')" <button class="btn btn-danger" href="{% url 'editora_delete' editora.id %}"">Excluir</button><a/>
+                     </td>
+                 </tr>
+                 {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock  %}
