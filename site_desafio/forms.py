@@ -1,3 +1,4 @@
+from dataclasses import fields
 from django import forms
 from .models import Autor
 from .models import Editora
@@ -14,7 +15,7 @@ class EditoraForm(forms.ModelForm):
     class Meta:
         model = Editora
         exclude = ()
-
+        
 
 class LivroForm(forms.ModelForm):
     class Meta:

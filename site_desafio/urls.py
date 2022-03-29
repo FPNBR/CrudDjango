@@ -4,7 +4,7 @@ from .views import viewHome, viewAutor, viewAutorAdd, viewAutorEdit, viewAutorDe
 
 
 urlpatterns = [
-    path('home/', viewHome, name='home'),
+    path('', viewHome, name='home'),
     path('autor/', viewAutor, name='autor'),
     path('autor/add/', viewAutorAdd, name='autor_add'),
     path('autor/edit/<int:autor_pk>', viewAutorEdit, name='autor_edit'),

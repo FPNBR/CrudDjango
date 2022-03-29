@@ -33,7 +33,7 @@
                     <td>{{ autor.data_nascimento }}</td>
                     <td>
                         <a <button class="btn btn-warning" href="{% url 'autor_edit' autor.id %}">Editar</button><a/>
-                        <a onclick="return confirm('Tem certeza que deseja excluir o autor?')" <button class="btn btn-danger" href="{% url 'autor_delete' autor.id %}"">Excluir</button><a/>
+                            <a onclick="return confirm('Se você excluir o autor, o livro associado a ele também será deletado, tem certeza?')" <button class="btn btn-danger" href="{% url 'autor_delete' autor.id %}"">Excluir</button><a/>
                      </td>
                  </tr>
                  {% endfor %}

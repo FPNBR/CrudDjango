@@ -33,7 +33,7 @@
                     <td>{{ editora.estado }}</td>
                     <td>
                         <a <button class="btn btn-warning" href="{% url 'editora_edit' editora.id %}">Editar</button><a/>
-                        <a onclick="return confirm('Tem certeza que deseja excluir o Editor(a)?')" <button class="btn btn-danger" href="{% url 'editora_delete' editora.id %}"">Excluir</button><a/>
+                            <a onclick="return confirm('Se você excluir a editora, o livro associado a ela também será deletado, tem certeza?')" <button class="btn btn-danger" href="{% url 'editora_delete' editora.id %}"">Excluir</button><a/>
                      </td>
                  </tr>
                  {% endfor %}
