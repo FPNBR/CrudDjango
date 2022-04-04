@@ -10,6 +10,8 @@
 __pycache__
 db.sqlite3
 media
+migrations
+manage.py
 
 # Backup files # 
 *.bak 
